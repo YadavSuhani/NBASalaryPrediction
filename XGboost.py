@@ -8,15 +8,40 @@ import matplotlib.pyplot as plt
 # =======================
 # CONFIG
 # =======================
-CSV_PATH = "merged_player_finance_with_stats.csv"
-TARGET_COL = "3rd Year Option"
+CSV_PATH = "final_data.csv"
+TARGET_COL = "year3_salary"
 FEATURE_COLS = [
-    "Draft Pick","3rd Year Option",
-    "MIN_S1","MIN_S2","PTS_S1","PTS_S2","AST_S1","AST_S2",
-    "REB_S1","REB_S2","STL_S1","STL_S2","FG3M_S1","FG3M_S2",
-    "FG3A_S1","FG3A_S2","FTM_S1","FTM_S2","FTA_S1","FTA_S2",
-    "FGM_S1","FGM_S2","FGA_S1","FGA_S2",
-    "cap_space_s1","cap_alloc_s1","cap_space_s2","cap_alloc_s2"
+    "draft_pick",          
+    "year3_salary",        
+
+    # Season 1 & Season 2 box score:
+    "minutes_s1", "minutes_s2",
+    "points_s1", "points_s2",
+    "assists_s1", "assists_s2",
+    "rebounds_s1", "rebounds_s2",
+    #"steals_s1", "steals_s2",
+    "3pts_made_s1", "3pts_made_s2",
+    "3pts_attempted_s1", "3pts_attempted_s2",
+    "free_throws_made_s1", "free_throws_made_s2",
+    "free_throws_attempted_s1", "free_throws_attempted_s2",
+    "field_goals_made_per_36_s1", "field_goals_attempted_per_36_s1" , 
+    "3pts_made_per_36_s1", "3pts_attempted_per_36_s1" ,
+    "field_goals_made_per_36_s2", "field_goals_attempted_per_36_s2" , 
+    "3pts_made_per_36_s2", "3pts_attempted_per_36_s2" ,
+    "fg_pct_s1", "fg_pct_s2" , 
+    #"field_goals_made_s1", "field_goals_made_s2",
+    #"field_goals_attempted_s1", "field_goals_attempted_s2",
+    "ts_pct_s2", "ts_pct_s1" ,
+    "points_per_36_s1", "points_per_36_s2", 
+    "rebounds_per_36_s1", "rebounds_per_36_s2",
+    "assists_per_36_s1", "assists_per_36_s2", 
+
+
+    # Salaries & cap space:
+    #"year1_cap_space",
+    "year1_cap_alloc",
+    #"year2_cap_space",
+    "year2_cap_alloc"
 ]
 TOP_K_IMPORTANCE = 20
 RAND = 42
@@ -50,8 +75,8 @@ y  = y.loc[valid]
 # -----------------------
 X = df.drop(columns=[TARGET_COL]).copy()
 
-if X["Draft Pick"].dtype==object:
-    X["Draft Pick"] = X["Draft Pick"].astype(str).str.extract(r"(\d+)", expand=False).astype(float)
+if X["draft_pick"].dtype==object:
+    X["draft_pick"] = X["draft_pick"].astype(str).str.extract(r"(\d+)", expand=False).astype(float)
 
 for col in X.columns:
     if X[col].dtype==object:
