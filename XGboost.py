@@ -20,7 +20,7 @@ FEATURE_COLS = [
     "assists_s1", "assists_s2",
     "rebounds_s1", "rebounds_s2",
     #"steals_s1", "steals_s2",
-    "RPM_s1","RPM_s2",
+    #"RPM_s1","RPM_s2",
     "USG_s1","USG_s2",
     "3pts_made_s1", "3pts_made_s2",
     "3pts_attempted_s1", "3pts_attempted_s2",
